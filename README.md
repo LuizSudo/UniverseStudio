@@ -16,9 +16,9 @@ A 3D Gravity simulation software written in C++
 - Assimp
 
 # Planned Features
-[] UI for better user interaction
-[] Improve gravity simulation
-[] Objects collision
-[] 
+- [ ] UI for better user interaction
+- [ ] Improve gravity simulation
+- [ ] Objects collision
+
 ### License
-See (License)[LICENSE] file for more details
+See [License](LICENSE) file for more details
