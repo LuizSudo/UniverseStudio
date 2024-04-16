@@ -5,9 +5,10 @@ A 3D Gravity simulation software written in C++
 > This projects is in early development stage
 
 ## Build
-1. Install the Dependencies
-2. cd into `universtudio`
-3. enter `make run`
+1. Clone the repository using `git clone --recursive https://github.com/LuizSudo/UniverseStudio.git`
+2. Install the Dependencies
+3. cd into `universtudio`
+4. enter `make run`
 
 ## Dependencies
 - OpenGL
