@@ -14,14 +14,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "ncp/Sim.h"
+#include "ncp/Simulation.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "Components.h"
 #include "ncp/Vec3.h"
 #include "Callback.h"
 #include "Shader.h"
-#include "Camera.h"
+//#include "Camera.h"
 #include "Model.h"
 #include "Skybox.h"
 #include "stb_image.h"
@@ -31,7 +31,7 @@ double lastFrame = 0.0;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
-bool firstMouse = true;
+bool firstMouse = false;
 
 float lastX = 800.0f, lastY = 450.0f;
 
@@ -78,7 +78,7 @@ void ncp::Sim::init(const std::string &windowName, const std::string &config)
         // return -1;
         return;
     }
-    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(m_window, GLFW_CURSOR_DISABLED, GLFW_CURSOR_NORMAL);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
@@ -109,6 +109,8 @@ void ncp::Sim::init(const std::string &windowName, const std::string &config)
     mars->cModel = std::make_shared<CModel>("../res/planets/mars/mars.obj", 0.2);
     mars->cGravity = std::make_shared<CGravity>(1.0);
 
+
+    // Objects in Space
     auto earth = m_entities.addEntity("Gravity");
     earth->cTransform = std::make_shared<CTransform>(
         ncp::Vec3(2.0, 0.0, 0.0),
@@ -288,7 +290,7 @@ GLFWwindow *initializeGLFW(unsigned int windowWidth, unsigned int windowHeight)
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(window, mouse_callback);
+    //glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))

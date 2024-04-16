@@ -8,15 +8,11 @@
 CXX    := g++
 OUTPUT := universtudio
 
-# manually specify SFML directory
-SFML_DIR := .
-
 # compiler and linker flags
 CXX_FLAGS := -O3 -std=c++17
 INCLUDES  := -I./include 
 LDFLAGS   := -O3 -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lassimp -openmp
 
-# the source files for the ecs game engine
 SRC_FILES := $(wildcard src/*.cpp src/**/*.cpp)
 OBJ_FILES := $(SRC_FILES:.cpp=.o)
 
