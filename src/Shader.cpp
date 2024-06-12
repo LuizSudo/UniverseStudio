@@ -3,8 +3,8 @@
 #include <sstream>
 #include <string>
 
-#include <glad/glad.h>
-#include <glm/glm.hpp>
+#include "./include/glad/glad.h
+#include "./include/glm/glm.hpp"
 
 #include "../include/Shader.h"
 

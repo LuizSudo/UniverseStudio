@@ -1,4 +1,4 @@
-#include "ncp/Simulation.h"
+#include "../include/ncp/Simulation.h"
 
 int main()
 {

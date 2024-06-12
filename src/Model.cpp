@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "../include/Model.h"
 #include "stb_image.h"
 
 unsigned int TextureFromFile(const char *path, const std::string &directory);

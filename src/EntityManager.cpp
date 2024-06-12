@@ -4,8 +4,8 @@
 #include <map>
 #include <algorithm>
 
-#include "Entity.h"
-#include "EntityManager.h"
+#include "../include/Entity.h"
+#include "../include/EntityManager.h"
 
 EntityManager::EntityManager() {}
 
