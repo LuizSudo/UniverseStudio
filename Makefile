@@ -1,10 +1,3 @@
-# To build:
-# 	$ make
-#
-# To compile and run:
-# 	$ make run
-
-# define compiler and output name
 CXX    := g++
 OUTPUT := universtudio
 
