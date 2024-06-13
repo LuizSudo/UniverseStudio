@@ -4,9 +4,9 @@ OUTPUT := universtudio
 # compiler and linker flags
 CXX_FLAGS := -O3 -std=c++17
 INCLUDES  := -I./include 
-LDFLAGS   := -O3 -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lassimp -openmp
+LDFLAGS   := -O3 #-lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lassimp -openmp
 
-SRC_FILES := $(wildcard src/*.cpp src/**/*.cpp)
+SRC_FILES := $(wildcard src/*.cpp src/**/*.cpp include/**/*.h include/**/*.hpp)
 OBJ_FILES := $(SRC_FILES:.cpp=.o)
 
 # all of these targets will be made if you just type make

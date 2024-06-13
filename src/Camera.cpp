@@ -2,9 +2,9 @@
 
 #include "../include/glad/glad.h"
 #include "../include/glm/glm.hpp"
-#include "../include/glm/gtc/matrix_transform.hpp>"
+#include "../include/glm/gtc/matrix_transform.hpp"
 
-#include "Camera.h"
+#include "../include/Camera.h"
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     : front(glm::vec3(0.0f, 0.0f, -1.0f)),

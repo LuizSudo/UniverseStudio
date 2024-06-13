@@ -1,6 +1,4 @@
-
-
-#include "Callback.h"
+#include "../include/Callback.h"
 
 extern Camera camera;
 extern bool firstMouse;

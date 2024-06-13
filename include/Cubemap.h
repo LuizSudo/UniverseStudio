@@ -1,9 +1,9 @@
 #ifndef CUBEMAP_H
 #define CUBEMAP_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
-unsigned int loadCubemap(const std::vector<std::string> &faces);
+unsigned int loadCubemap(const std::vector<std::string>& faces);
 
 #endif

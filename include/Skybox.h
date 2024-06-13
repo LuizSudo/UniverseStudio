@@ -4,17 +4,16 @@
 #include "Cubemap.h"
 #include "Shader.h"
 
-class Skybox 
-{
-public:
-    Skybox(const std::vector<std::string> &faces);
-    Skybox() {}
-    void draw(Shader &shader) const;
+class Skybox {
+ public:
+  Skybox(const std::vector<std::string>& faces);
+  Skybox() {}
+  void draw(Shader& shader) const;
 
-private:
-    unsigned int VAO, VBO, cubemapTexture;
+ private:
+  unsigned int VAO, VBO, cubemapTexture;
 
-    void setupSkybox();
+  void setupSkybox();
 };
 
 #endif

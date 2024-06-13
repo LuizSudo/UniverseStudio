@@ -8,11 +8,11 @@
 #include <iostream>
 #include <string>
 
-#include <GLFW/glfw3.h>
+#include "../include/glm/gtc/matrix_transform.hpp"
+#include "../include/GLFW/glfw3.h"
 #include "../include/glad/glad.h"
-#include "./inclide/glm/gtc/matrix_transform.hpp"
-#include "./include/glm/glm.hpp"
-#include "./include/glm/gtc/type_ptr.hpp"
+#include "../include/glm/glm.hpp"
+#include "../include/glm/gtc/type_ptr.hpp"
 
 #include "../include/Callback.h"
 #include "../include/Camera.h"
@@ -24,7 +24,7 @@
 #include "../include/Skybox.h"
 #include "../include/ncp/Simulation.h"
 #include "../include/ncp/Vec3.h"
-#include "stb_image.h"
+#include "../include/stb_image.h"
 
 double dt = 0.0;
 double lastFrame = 0.0;
