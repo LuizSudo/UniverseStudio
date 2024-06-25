@@ -51,8 +51,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #   pragma GCC system_header
 #endif
 
-#include <assimp/IOStream.hpp>
-#include <assimp/IOSystem.hpp>
+#include "IOStream.hpp"
+#include "IOSystem.hpp"
 #include <zlib.h>
 
 namespace Assimp {

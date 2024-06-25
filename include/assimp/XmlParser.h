@@ -42,9 +42,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef INCLUDED_AI_IRRXML_WRAPPER
 #define INCLUDED_AI_IRRXML_WRAPPER
 
-#include <assimp/ai_assert.h>
-#include <assimp/StringUtils.h>
-#include <assimp/DefaultLogger.hpp>
+#include "ai_assert.h"
+#include "StringUtils.h"
+#include "DefaultLogger.hpp"
 
 #include "BaseImporter.h"
 #include "IOStream.hpp"

@@ -49,7 +49,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 #include <android/native_activity.h>
-#include <assimp/DefaultIOSystem.h>
+#include "./DefaultIOSystem.h"
 
 namespace Assimp {
 

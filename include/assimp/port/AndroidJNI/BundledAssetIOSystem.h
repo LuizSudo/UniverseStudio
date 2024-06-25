@@ -48,8 +48,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <android/asset_manager_jni.h>
 
-#include <assimp/DefaultIOSystem.h>
-#include <assimp/IOStream.hpp>
+#include "./DefaultIOSystem.h"
+#include "./IOStream.hpp"
 
 namespace Assimp {
 

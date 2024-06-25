@@ -52,7 +52,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma GCC system_header
 #endif
 
-#include <assimp/config.h>
+#include "config.h"
 
 //////////////////////////////////////////////////////////////////////////
 /* Define ASSIMP_BUILD_NO_XX_IMPORTER to disable a specific
@@ -162,37 +162,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #else
 #define ASSIMP_API __attribute__((visibility("default")))
 #define ASSIMP_API_WINONLY
-#endif // _WIN32
+#endif  // _WIN32
 
 #ifdef _MSC_VER
-    #pragma warning(disable : 4521 4512 4714 4127 4351 4510)
-    #ifdef ASSIMP_BUILD_DLL_EXPORT
-        #pragma warning(disable : 4251)
-    #endif
-    /* Force the compiler to inline a function, if possible */
-    #define AI_FORCE_INLINE inline
+#pragma warning(disable : 4521 4512 4714 4127 4351 4510)
+#ifdef ASSIMP_BUILD_DLL_EXPORT
+#pragma warning(disable : 4251)
+#endif
+/* Force the compiler to inline a function, if possible */
+#define AI_FORCE_INLINE inline
 
-    /* Tells the compiler that a function never returns. Used in code analysis
+/* Tells the compiler that a function never returns. Used in code analysis
     * to skip dead paths (e.g. after an assertion evaluated to false). */
-    #define AI_WONT_RETURN __declspec(noreturn)
+#define AI_WONT_RETURN __declspec(noreturn)
 #elif defined(SWIG)
-  /* Do nothing, the relevant defines are all in AssimpSwigPort.i */
+/* Do nothing, the relevant defines are all in AssimpSwigPort.i */
 #else
-    #define AI_WONT_RETURN
-    #define AI_FORCE_INLINE inline
-#endif // (defined _MSC_VER)
+#define AI_WONT_RETURN
+#define AI_FORCE_INLINE inline
+#endif  // (defined _MSC_VER)
 
 #ifdef __GNUC__
-#   define AI_WONT_RETURN_SUFFIX __attribute__((noreturn))
+#define AI_WONT_RETURN_SUFFIX __attribute__((noreturn))
 #elif _MSC_VER
 #if defined(__clang__)
-#   define AI_WONT_RETURN_SUFFIX __attribute__((noreturn))
+#define AI_WONT_RETURN_SUFFIX __attribute__((noreturn))
 #else
-#   define AI_WONT_RETURN_SUFFIX
+#define AI_WONT_RETURN_SUFFIX
 #endif
 #else
-#   define AI_WONT_RETURN_SUFFIX
-#endif // (defined __clang__)
+#define AI_WONT_RETURN_SUFFIX
+#endif  // (defined __clang__)
 
 #ifdef __cplusplus
 /* No explicit 'struct' and 'enum' tags for C++, this keeps showing up
@@ -260,15 +260,15 @@ typedef signed long long int ai_int;
 typedef unsigned long long int ai_uint;
 #ifndef ASSIMP_AI_REAL_TEXT_PRECISION
 #define ASSIMP_AI_REAL_TEXT_PRECISION 17
-#endif // ASSIMP_AI_REAL_TEXT_PRECISION
-#else // ASSIMP_DOUBLE_PRECISION
+#endif  // ASSIMP_AI_REAL_TEXT_PRECISION
+#else   // ASSIMP_DOUBLE_PRECISION
 typedef float ai_real;
 typedef signed int ai_int;
 typedef unsigned int ai_uint;
 #ifndef ASSIMP_AI_REAL_TEXT_PRECISION
 #define ASSIMP_AI_REAL_TEXT_PRECISION 9
-#endif // ASSIMP_AI_REAL_TEXT_PRECISION
-#endif // ASSIMP_DOUBLE_PRECISION
+#endif  // ASSIMP_AI_REAL_TEXT_PRECISION
+#endif  // ASSIMP_DOUBLE_PRECISION
 
 //////////////////////////////////////////////////////////////////////////
 /* Useful constants */
@@ -285,12 +285,12 @@ typedef unsigned int ai_uint;
 #define AI_MATH_HALF_PI_F (AI_MATH_PI_F * 0.5f)
 
 /* Tiny macro to convert from radians to degrees and back */
-#define AI_DEG_TO_RAD(x) ((x) * (ai_real) 0.0174532925)
-#define AI_RAD_TO_DEG(x) ((x) * (ai_real) 57.2957795)
+#define AI_DEG_TO_RAD(x) ((x) * (ai_real)0.0174532925)
+#define AI_RAD_TO_DEG(x) ((x) * (ai_real)57.2957795)
 
 /* Numerical limits */
 #ifdef __cplusplus
-constexpr ai_real ai_epsilon = (ai_real) 1e-6;
+constexpr ai_real ai_epsilon = (ai_real)1e-6;
 #else
 #define ai_epsilon ((ai_real)1e-6)
 #endif
@@ -319,7 +319,7 @@ constexpr ai_real ai_epsilon = (ai_real) 1e-6;
 #define AI_MAX_ALLOC(type) ((256U * 1024 * 1024) / sizeof(type))
 
 #ifndef _MSC_VER
-#if __cplusplus >= 201103L // C++11
+#if __cplusplus >= 201103L  // C++11
 #define AI_NO_EXCEPT noexcept
 #else
 #define AI_NO_EXCEPT
@@ -330,7 +330,7 @@ constexpr ai_real ai_epsilon = (ai_real) 1e-6;
 #else
 #define AI_NO_EXCEPT
 #endif
-#endif // _MSC_VER
+#endif  // _MSC_VER
 
 /**
  *  Helper macro to set a pointer to NULL in debug builds
@@ -343,4 +343,4 @@ constexpr ai_real ai_epsilon = (ai_real) 1e-6;
 
 #define AI_COUNT_OF(X) (sizeof(X) / sizeof((X)[0]))
 
-#endif // !! AI_DEFINES_H_INC
+#endif  // !! AI_DEFINES_H_INC

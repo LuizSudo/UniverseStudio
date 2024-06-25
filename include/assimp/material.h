@@ -50,7 +50,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma GCC system_header
 #endif
 
-#include <assimp/types.h>
+#include "types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -430,7 +430,7 @@ enum aiShadingMode {
 };
 
 // ---------------------------------------------------------------------------
-/** 
+/**
  *  @brief Defines some mixed flags for a particular texture.
  *
  *  Usually you'll instruct your cg artists how textures have to look like ...
@@ -470,7 +470,7 @@ enum aiTextureFlags {
 };
 
 // ---------------------------------------------------------------------------
-/** 
+/**
  *  @brief Defines alpha-blend flags.
  *
  *  If you're familiar with OpenGL or D3D, these flags aren't new to you.
@@ -515,7 +515,7 @@ enum aiBlendMode {
 #include "./Compiler/pushpack1.h"
 
 // ---------------------------------------------------------------------------
-/** 
+/**
  *  @brief Defines how an UV channel is transformed.
  *
  *  This is just a helper structure for the #AI_MATKEY_UVTRANSFORM key.
@@ -560,7 +560,7 @@ struct aiUVTransform {
 
 //! @cond AI_DOX_INCLUDE_INTERNAL
 // ---------------------------------------------------------------------------
-/** 
+/**
  *  @brief A very primitive RTTI system for the contents of material properties.
  */
 enum aiPropertyTypeInfo {
@@ -706,7 +706,7 @@ struct aiMaterial
 #ifdef __cplusplus
 
 public:
-    /** 
+    /**
      * @brief  The class constructor.
      */
     aiMaterial();
