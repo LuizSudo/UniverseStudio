@@ -8,10 +8,10 @@
 #include <iostream>
 #include <string>
 
-#include "../include/glm/gtc/matrix_transform.hpp"
 #include "../include/GLFW/glfw3.h"
 #include "../include/glad/glad.h"
 #include "../include/glm/glm.hpp"
+#include "../include/glm/gtc/matrix_transform.hpp"
 #include "../include/glm/gtc/type_ptr.hpp"
 
 #include "../include/Callback.h"
@@ -36,7 +36,7 @@ bool firstMouse = false;
 float lastX = 800.0f, lastY = 450.0f;
 
 GLFWwindow* initializeGLFW(unsigned int windowWidth, unsigned int windowHeight);
-void spawnRock(EntityManager& entities);
+//void spawnRock(EntityManager& entities);
 
 ncp::Sim::Sim(const std::string& windowName, const std::string& config) {
   init(windowName, config);
@@ -243,7 +243,7 @@ void ncp::Sim::sRender() {
 void ncp::Sim::computeGravityForces(const EntityVec& objects) {
   size_t nObjects = objects.size();
 
-#pragma omp for
+#pragma omp
   for (size_t i = 0; i < nObjects - 1; i++) {
     for (size_t j = i + 1; j < nObjects; j++) {
       const ncp::Vec3 p1 = objects[i]->cTransform->pos;
@@ -294,6 +294,7 @@ GLFWwindow* initializeGLFW(unsigned int windowWidth,
   return window;
 }
 
+/*
 void spawnRock(EntityManager& entities) {
   auto rock = entities.addEntity("Gravity");
   rock->cTransform = std::make_shared<CTransform>(
@@ -304,3 +305,4 @@ void spawnRock(EntityManager& entities) {
       std::make_shared<CModel>("../res/planets/asteroid/asteroid.obj", 0.1);
   rock->cGravity = std::make_shared<CGravity>(0.3);
 }
+*/

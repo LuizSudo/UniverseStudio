@@ -13,7 +13,7 @@ class Shader {
  public:
   unsigned int ID = 0;
 
-  Shader() {};
+  Shader(){};
   Shader(const char* vertexPath, const char* fragmentPath);
 
   void use();

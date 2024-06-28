@@ -1,8 +1,8 @@
 #ifndef CALLBACK_H
 #define CALLBACK_H
 
-#include "GLFW/glfw3.h"
-#include "glad/glad.h"
+#include "./GLFW/glfw3.h"
+#include "./glad/glad.h"
 
 #include "Camera.h"
 
