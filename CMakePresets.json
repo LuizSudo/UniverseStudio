@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "LLVM",
+            "displayName": "LLVM Toolchain",
+            "description": "Using compilers: C = clang, CXX = clang++",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/clang",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+                "CMAKE_C_LINK_EXECUTABLE": "ld.lld",
+                "CMAKE_CXX_LINK_EXECUTABLE": "ld.lld"
+            }
+        },
+        {
+            "name": "gcc",
+            "displayName": "gcc 14.1.1",
+            "description": "Using compilers: C = gcc, CXX = g++",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++"
+            }
+        }
+    ]
+}
