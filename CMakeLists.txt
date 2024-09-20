@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 project(universestudio)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ./res)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ./export)
 
 # glfw
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW build documentation" FORCE)
