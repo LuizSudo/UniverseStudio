@@ -22,6 +22,7 @@
 #include "../include/Model.h"
 #include "../include/Shader.h"
 #include "../include/Skybox.h"
+#include "../include/UI.h"
 #include "../include/ncp/Simulation.h"
 #include "../include/ncp/Vec3.h"
 #include "../include/stb_image.h"
@@ -62,6 +63,10 @@ void ncp::Sim::run() {
     m_currentFrame++;
   }
 
+  // Shutdown ImGUI
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
   std::cout << m_entities.getEntities("Gravity").size() << " objects, "
             << m_currentFrame / total_time << " fps \n";
   glfwSetWindowShouldClose(m_window, true);
@@ -71,6 +76,14 @@ void ncp::Sim::run() {
 void ncp::Sim::init(const std::string& windowName, const std::string& config) {
   std::cout << "Initializing...\n";
   m_window = initializeGLFW(1600, 900);
+  // Initialize ImGUI
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO();
+  (void)io;
+  ImGui::StyleColorsDark();
+  ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+  ImGui_ImplOpenGL3_Init("#version 460");
   if (m_window == NULL) {
     std::cout << "Failed to initialize GLFW\n";
     // return -1;
@@ -139,7 +152,33 @@ void ncp::Sim::sUserInput() {
   if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     m_running = false;
   // glfwSetWindowShouldClose(m_window, true);
+  ImGui_ImplOpenGL3_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+  ImGui::NewFrame();
 
+  // ImGUI window for simulation control
+  ImGui::Begin("Simulation Control");
+
+  if (ImGui::Button(m_paused ? "Resume Simulation" : "Pause Simulation")) {
+    m_paused = !m_paused;
+  }
+
+  ImGui::End();
+
+  // ImGui window for planet information
+  ImGui::Begin("Planet info");
+  for (auto& e : m_entities.getEntities("Gravity")) {
+    //ImGui::Text("Entity: %s", e->Entity.c_str());
+    ImGui::Text("Position: (%.2f, %.2f, %.2f", e->cTransform->pos.x,
+                e->cTransform->pos.y, e->cTransform->pos.z);
+    ImGui::Text("Velocity: (%.2f, %.2f, %.2f", e->cTransform->vel.x,
+                e->cTransform->vel.y, e->cTransform->vel.z);
+    ImGui::Separator();
+  }
+  ImGui::End();
+
+  // Render ImGUI
+  ImGui::Render();
   if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS)
     camera.processKeyboard(FORWARD, dt);
   if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS)
@@ -156,10 +195,6 @@ void ncp::Sim::sUserInput() {
   if (glfwGetKey(m_window, GLFW_KEY_P) == GLFW_PRESS)
     m_paused = !m_paused;
 
-  // if (glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT == GLFW_PRESS))
-  // spawnRock(m_entities);
-
-  // camera following system
   static bool following = false;
   static unsigned int objectToFollow = 0;
   if (glfwGetKey(m_window, GLFW_KEY_1) == GLFW_PRESS) {
@@ -233,7 +268,7 @@ void ncp::Sim::sRender() {
 
   // render skybox
   m_entities.getEntities("Skybox")[0]->cSkybox->skybox.draw(m_skyboxShader);
-
+  ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
   glfwSwapBuffers(m_window);
   glfwPollEvents();
 }
