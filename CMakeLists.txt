@@ -18,11 +18,24 @@ set(ASSIMP_INSTALL OFF CACHE BOOL "Assimp install" FORCE)
 set(ASSIMP_INSTALL_PDB OFF CACHE BOOL "Assimp install PDB" FORCE)
 add_subdirectory(include/assimp)
 
-include_directories(include/ include/glad include/glfw include/glm include/imgui include/imgui/ include/assimp include/assimp/build/include)
+# ImGUI
+set(IMGUI_DIR include/imgui)
+
+set(IMGUI_SOURCES
+  ${IMGUI_DIR}/imgui.cpp
+  ${IMGUI_DIR}/imgui_demo.cpp
+  ${IMGUI_DIR}/imgui_draw.cpp
+  ${IMGUI_DIR}/imgui_tables.cpp
+  ${IMGUI_DIR}/imgui_widgets.cpp
+  ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+  ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+)
+
+include_directories(include/ include/glad include/glfw include/glm include/assimp include/assimp/build/include)
 
 set(SOURCE_FILES src/main.cpp src/ncp/Simulation.cpp src/ncp/Vec3.cpp src/glad.c src/Mesh.cpp src/Model.cpp src/Skybox.cpp src/Shader.cpp src/stb_image.cpp src/Entity.cpp src/EntityManager.cpp src/Callback.cpp src/Camera.cpp src/Cubemap.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${IMGUI_SOURCES})
 
 target_link_libraries(${PROJECT_NAME} glfw ${GLFW_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} assimp)
