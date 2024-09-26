@@ -1,10 +1,3 @@
-/*
-    TODO: Add glowing bodies
-    TODO: Make screen size a variable rather than hard code
-    TODO: Determine units (eg. "mass = 1" is 1 solar mass)
-    TODO: Add camera following functionality
-*/
-
 #include <iostream>
 #include <string>
 
@@ -37,7 +30,6 @@ bool firstMouse = false;
 float lastX = 800.0f, lastY = 450.0f;
 
 GLFWwindow* initializeGLFW(unsigned int windowWidth, unsigned int windowHeight);
-//void spawnRock(EntityManager& entities);
 
 ncp::Sim::Sim(const std::string& windowName, const std::string& config) {
   init(windowName, config);
@@ -102,37 +94,37 @@ void ncp::Sim::init(const std::string& windowName, const std::string& config) {
       "res/skybox/GalaxyTex_PositiveZ.png",
       "res/skybox/GalaxyTex_NegativeZ.png",
   };
+  m_skyboxShader = Shader("res/shaders/skybox.vs", "res/shaders/skybox.fs");
+  m_modelShader =
+      Shader("res/shaders/model_loading.vs", "res/shaders/model_loading.fs");
   // Skybox skybox(faces);
   auto skybox = m_entities.addEntity("Skybox");
   skybox->cSkybox = std::make_shared<CSkybox>(faces);
 
-  // stbi_set_flip_vertically_on_load(true);
+  constexpr double G = 1.0;
 
-  m_skyboxShader = Shader("res/shaders/skybox.vs", "res/shaders/skybox.fs");
-  m_modelShader =
-      Shader("res/shaders/model_loading.vs", "res/shaders/model_loading.fs");
+  // Add Sun
+  auto sun = m_entities.addEntity("Gravity");
+  sun->cTransform = std::make_shared<CTransform>(ncp::Vec3(0.0, 0.0, 0.0),
+                                                 ncp::Vec3(0.0, 0.0, 0.0),
+                                                 ncp::Vec3(0.0, 0.0, 0.0));
+  sun->cModel = std::make_shared<CModel>("res/stars/sun/sun.obj", 2.0);
+  sun->cGravity = std::make_shared<CGravity>(1000.0);
 
-  auto mars = m_entities.addEntity("Gravity");
-  mars->cTransform = std::make_shared<CTransform>(ncp::Vec3(0.0, 0.0, 0.0),
-                                                  ncp::Vec3(0.0, 0.25, 0.0),
-                                                  ncp::Vec3(0.0, 0.0, 0.0));
-  mars->cModel = std::make_shared<CModel>("res/planets/mars/mars.obj", 0.2);
-  mars->cGravity = std::make_shared<CGravity>(1.0);
+  // Add Earth orbiting the Sun
+  double distanceEarthSun = 20.0;
+  double massSun = sun->cGravity->mass;
+  double velocityEarth = sqrt(G * massSun / distanceEarthSun);
 
-  // Objects in Space
   auto earth = m_entities.addEntity("Gravity");
-  earth->cTransform = std::make_shared<CTransform>(ncp::Vec3(2.0, 0.0, 0.0),
-                                                   ncp::Vec3(0.0, -0.25, 0.0),
-                                                   ncp::Vec3(0.0, 0.0, 0.0));
-  earth->cModel = std::make_shared<CModel>("res/planets/earth/earth.obj", 0.2);
+  earth->cTransform = std::make_shared<CTransform>(
+      ncp::Vec3(distanceEarthSun, 0.0, 0.0), ncp::Vec3(0.0, velocityEarth, 0.0),
+      ncp::Vec3(0.0, 0.0, 0.0));
+  earth->cModel = std::make_shared<CModel>("res/planets/earth/earth.obj", 0.5);
   earth->cGravity = std::make_shared<CGravity>(1.0);
 
-  auto venus = m_entities.addEntity("Gravity");
-  venus->cTransform = std::make_shared<CTransform>(ncp::Vec3(0.0, 0.0, 2.0),
-                                                   ncp::Vec3(0.0, 0.0, 0.0),
-                                                   ncp::Vec3(0.0, 0.0, 0.0));
-  venus->cModel = std::make_shared<CModel>("res/planets/venus/venus.obj", 0.2);
-  venus->cGravity = std::make_shared<CGravity>(1.0);
+  camera.position = glm::vec3(0.0f, 30.0f, 90.0f);
+  camera.lookAt(glm::vec3(0.0f, 0.0f, 0.0f));
 }
 
 void ncp::Sim::setPaused(bool paused) {
@@ -326,16 +318,3 @@ GLFWwindow* initializeGLFW(unsigned int windowWidth,
 
   return window;
 }
-
-/*
-void spawnRock(EntityManager& entities) {
-  auto rock = entities.addEntity("Gravity");
-  rock->cTransform = std::make_shared<CTransform>(
-      ncp::Vec3(camera.position.x, camera.position.y, camera.position.z),
-      ncp::Vec3(camera.front.x, camera.front.y, camera.front.z),
-      ncp::Vec3(0.0, 0.0, 0.0));
-  rock->cModel =
-      std::make_shared<CModel>("../res/planets/asteroid/asteroid.obj", 0.1);
-  rock->cGravity = std::make_shared<CGravity>(0.3);
-}
-*/
