@@ -1,5 +1,7 @@
 # Universe Studio Build Instruction
+Universe Studio was written using C++, so it is necessary to install some dependencies to compile the software
 
+The following are the packages required for compilation on different Linux distros.
 # Requeriments 
 Ubuntu:
 `sudo apt install cmake g++ clang libc++-dev libx11-dev libxcursor-dev libxi-dev libgl1-mesa-dev libfontconfig1-dev`
