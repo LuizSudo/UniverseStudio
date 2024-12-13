@@ -162,8 +162,43 @@ void ncp::Sim::sUserInput() {
   if (ImGui::Button(m_paused ? "Resume Simulation" : "Pause Simulation")) {
     m_paused = !m_paused;
   }
-
+  static bool showCredits = true;
+  if (ImGui::Button("Show Credits")) {
+    showCredits = false;
+  }
   ImGui::End();
+  if (showCredits) {
+    ImGui::Begin("Credits");
+    ImGui::Text("Credits");
+    ImGui::Separator();
+    // Scrollable child region for credits content
+    ImGui::BeginChild("Scrolling", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
+
+    // Display credits content
+    ImGui::Text("Developed by:");
+    ImGui::BulletText("Luiz Henrique Amaral Soares");
+
+    ImGui::Spacing();
+    ImGui::Text("Special Thanks:");
+    ImGui::BulletText("Cleonir Coelho Simões");
+    ImGui::BulletText("João Paulo Vieira Cordeiro");
+
+    ImGui::Spacing();
+    ImGui::Text("Tools Used:");
+    ImGui::BulletText("C++ Programming Language");
+    ImGui::BulletText("ImGUI");
+    ImGui::BulletText("OpenGL");
+    ImGui::BulletText("Assimp");
+
+
+    ImGui::Spacing();
+    ImGui::Text("Thank you for playing!");
+
+    ImGui::EndChild();
+    ImGui::End();
+  }
+
+
 
   // ImGui window for planet information
   ImGui::Begin("Planet info");
