@@ -1,6 +1,5 @@
 # Universe Studio
 
-[![Build Status](https://github.com/LuizSudo/UniverseStudio/actions/workflows/build.yml/badge.svg)](https://github.com/LuizSudo/UniverseStudio/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 
@@ -25,7 +24,7 @@ A sophisticated 3D Gravity simulation software that brings the universe to your 
 ### Prerequisites
 
 - CMake (3.10 or higher)
-- C++17 compatible compiler
+- C++ 17 compatible compiler
 - Git
 
 ### Dependencies
