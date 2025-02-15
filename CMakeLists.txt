@@ -43,7 +43,13 @@ target_link_libraries(${PROJECT_NAME} assimp)
 add_custom_target(copy_resources ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${PROJECT_SOURCE_DIR}/res
-        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/build
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res
         COMMENT "Copying resources into build directory")
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${PROJECT_SOURCE_DIR}/imgui.ini
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/imgui.ini
+        COMMENT "Copying imgui.ini to output directory")
 
 add_dependencies(${PROJECT_NAME} copy_resources)
