@@ -1,10 +1,3 @@
-/*
-    TODO: Add glowing bodies
-    TODO: Make screen size a variable rather than hard code
-    TODO: Determine units (eg. "mass = 1" is 1 solar mass)
-    TODO: Add camera following functionality
-*/
-
 #include <iostream>
 #include <string>
 
@@ -172,7 +165,8 @@ void ncp::Sim::sUserInput() {
     ImGui::Text("Credits");
     ImGui::Separator();
     // Scrollable child region for credits content
-    ImGui::BeginChild("Scrolling", ImVec2(0, 0), true, ImGuiWindowFlags_HorizontalScrollbar);
+    ImGui::BeginChild("Scrolling", ImVec2(0, 0), true,
+                      ImGuiWindowFlags_HorizontalScrollbar);
 
     // Display credits content
     ImGui::Text("Developed by:");
@@ -190,15 +184,12 @@ void ncp::Sim::sUserInput() {
     ImGui::BulletText("OpenGL");
     ImGui::BulletText("Assimp");
 
-
     ImGui::Spacing();
     ImGui::Text("Thank you for playing!");
 
     ImGui::EndChild();
     ImGui::End();
   }
-
-
 
   // ImGui window for planet information
   ImGui::Begin("Planet info");
